@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Memory Card Matching Game</title>
+
+    <!-- Connect CSS file -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<!-- Winning Celebration Popup -->
+<div class="win-popup" id="win-popup">
+
+    <div class="popup-content">
+
+        <h1 id="win-title">🎉 Congratulations! 🎉</h1>
+
+        <p>You Won the Game!</p>
+
+        <h3 id="final-moves"></h3>
+
+        <h3 id="final-time"></h3>
+
+        <button id="play-again-btn">
+            Play Again
+        </button>
+
+        <button id="next-level-btn">
+            Next Level →
+        </button>
+
+    </div>
+
+</div>
+
+ 
+<!-- Time's Up Popup -->
+<div class="win-popup" id="time-up-popup">
+    <div class="win-content">
+        <h2>⏰ Time's Up!</h2>
+        <p>Don't worry! Try again.</p>
+        <button id="retry-btn">↻ Retry</button>
+    </div>
+</div>
+
+<body>
+
+<!-- Start Screen -->
+
+<div class="start-screen" id="start-screen">
+
+    <div class="welcome-content">
+
+        <div class="floating-cards">
+            <div class="floating-card card-one">🍎</div>
+            <div class="floating-card card-two">🎮</div>
+            <div class="floating-card card-three">⭐</div>
+            <div class="floating-card card-four">🍇</div>
+        </div>
+
+        <p class="welcome-tag">✨ THE ULTIMATE BRAIN CHALLENGE ✨</p>
+
+        <h1>MEMORY <span>MATCH</span></h1>
+
+        <p class="welcome-description">
+            Test your memory, find the matching pairs
+            and challenge your brain!
+        </p>
+
+        <button id="start-btn">
+            PLAY GAME <span>▶</span>
+        </button>
+
+        <p class="welcome-footer">
+            FLIP • MATCH • WIN
+        </p>
+
+    </div>
+
+</div>
+
+
+    <main class="game-container">
+
+        <!-- Game Heading -->
+        <header class="game-header">
+            <h1>Memory Match</h1>
+            <p>Flip the cards and find all matching pairs!</p>
+        </header>
+
+<!-- Difficulty Selection -->
+
+<div class="difficulty-section" id="difficulty-screen">
+    <h2>Choose Your Difficulty</h2>
+
+    <div class="difficulty-buttons">
+        <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+        <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+        <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+    </div>
+        <button id="progress-btn">
+        🏆 My Progress
+    </button>
+
+    <button id="back-to-home-btn">
+    ← Back to Home
+</button>
+</div>
+
+<!-- My Progress Screen -->
+<div class="progress-screen" id="progress-screen">
+
+    <h2>🏆 My Progress</h2>
+    <p>Track your gaming journey!</p>
+
+    <div class="progress-stats">
+
+        <div class="progress-card">
+            <h3 id="total-games">0 🎮</h3>
+            <p>Games Played</p>
+        </div>
+
+        <div class="progress-card">
+            <h3 id="total-wins">0 🏆</h3>
+            <p>Games Won</p>
+        </div>
+
+        <div class="progress-card">
+            <h3 id="daily-streak">0 🔥</h3>
+            <p>Daily Streak</p>
+        </div>
+
+        <div class="progress-card">
+            <h3 id="total-matches">0 💎</h3>
+            <p>Perfect Pairs </p>
+        </div>
+
+    </div>
+
+    <div class="level-progress">
+        <h3>Level Completion</h3>
+
+        <p id="easy-progress">Easy: 0 / 5</p>
+        <p id="medium-progress">Medium: 0 / 5</p>
+        <p id="hard-progress">Hard: 0 / 5</p>
+        <p id="total-levels-completed">
+    Total Levels Completed: 0 / 15
+</p>
+    </div>
+
+    <button id="back-progress-btn">
+        ← Back
+    </button>
+
+</div> 
+
+<div class="level-screen" id="level-screen">
+    <h2 id="level-heading">Choose Your Level</h2>
+    <p>Select a level to start playing!</p>
+
+    <div class="levels-grid" id="levels-grid"></div>
+
+    <button id="back-difficulty-btn">← Back to Difficulty</button>
+</div>
+
+<!-- Playing Mode Selection -->
+<div class="mode-screen" id="mode-screen">
+    <h2>Choose Your Playing Mode</h2>
+
+    <div class="mode-buttons">
+        <button class="mode-btn" id="normal-mode-btn">
+            Normal Mode
+            <span>No Time Limit</span>
+        </button>
+
+        <button class="mode-btn" id="challenge-mode-btn">
+            Challenge Mode
+            <span>Play Against Time</span>
+        </button>
+    </div>
+
+    <button id="back-level-btn">← Back to Levels</button>
+</div>
+<div id="game-play-screen">
+
+    <!-- Top Controls -->
+    <div class="game-top-controls">
+
+        <button id="sound-btn">🔊 Sound ON</button>
+
+        <button class="home-btn" id="home-btn">⌂ Home</button>
+
+    </div>
+
+    <div class="current-level-info">
+        <h2 id="current-level-title"></h2>
+        <p id="current-game-details"></p>
+    </div>
+<!-- Level 5 Sequence Display -->
+<div id="sequence-display" style="display: none;">
+
+    <h3>Remember This Sequence!</h3>
+
+    <div id="sequence-emojis"></div>
+
+    <p id="sequence-message">
+        Memorize the order carefully!
+    </p>
+
+</div>
+
+        <!-- Game Information -->
+        <section class="game-info">
+
+            <div class="info-box">
+                <span>Moves</span>
+                <h2>00</h2>
+            </div>
+
+            <div class="info-box">
+                <span>Time</span>
+                <h2>00:00</h2>
+            </div>
+
+            <div class="info-box">
+                <span>Matches</span>
+                <h2>0 / 8</h2>
+            </div>
+
+        </section>
+
+<!-- Best Score -->
+<section class="best-score-box">
+    <span>Best Score</span>
+    <h2 id="best-score">--</h2>
+</section>
+
+
+
+        <!-- Memory Card Grid -->
+        <section class="game-board">
+        </section>
+        <p id="paused-message" style="display: none;">
+    ⏸ GAME PAUSED
+</p>
+
+
+<!-- Game Actions -->
+<div class="game-actions">
+
+    <div class="game-buttons">
+
+        <button class="restart-btn">↻ Restart Game</button>
+
+        <button id="pause-btn">⏸</button>
+
+        <button id="hint-btn">💡 Hint (3)</button>
+
+    </div>
+
+    <button id="back-to-levels-btn">
+        ← Back to Levels
+    </button>
+
+    <p class="game-message"></p>
+
+</div>
+
+</div> <!-- game-actions -->
+</div>  <!-- game-play-screen -->
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
